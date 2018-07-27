@@ -42,3 +42,4 @@ npm
 package-lock.json
 /public/uploads
 .env
+/src/seeds
