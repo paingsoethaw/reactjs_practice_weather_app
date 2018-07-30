@@ -44,7 +44,6 @@ function Daily(props) {
           return <DailyList key={key} listData={value} />
         })
       }
-      {/* {dailyResponseDataGroups.map(dv => <DailyList listData={dv} key={getKey(dv)} />)} */}
     </div>
   );
 }
