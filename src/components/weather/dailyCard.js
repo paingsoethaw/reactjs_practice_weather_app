@@ -1,16 +1,12 @@
 import React from "react";
-// import PropTypes from "prop-types";
 
 function DailyCard(props) {
+  console.log(props)
   return (
     <div className="dailyCard">
-      <span>{props.dec}</span>
+      <span>{props.date} : {props.temp}</span>
     </div>
   );
 }
-
-// Contact.propTypes = {
-//   name: PropTypes.string.isRequired
-// };
 
 export default DailyCard;

@@ -5,7 +5,6 @@ import DailyContainer from "./components/weather/dailyContainer";
 
 var hourlyData = require('./seeds/hourlyWeatherData.json');
 
-
 class App extends Component {
   render() {
     return (
