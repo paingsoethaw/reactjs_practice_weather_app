@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import DailyContainer from "./components/weather/dailyContainer";
+import HourlyContainer from "./components/weather/hourlyContainer";
 
 var hourlyData = require('./seeds/hourlyWeatherData.json');
 
@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Weather React App</h1>
-        <DailyContainer dailyData={hourlyData.list} />
+        <HourlyContainer dailyData={hourlyData.list} />
       </div>
     );
   }
