@@ -1,8 +1,11 @@
 import React from "react";
 
-const getUpdateTime = (date) => {
-  const wNewDate = new Date(date * 1000);
-  return `${wNewDate.getHours()}:${wNewDate.getMinutes()}`;
+const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
+
+const getCustomTime = (date) => {
+  const wDate = new Date(date * 1000);
+  return ` ${wDate.getDate()} ${monthList[wDate.getMonth()+1]} ${wDate.getFullYear()} ( ${dayList[wDate.getDay()]})  ${wDate.getHours()}:${wDate.getMinutes()}`;
 };
 
 function Current(props) {
@@ -13,7 +16,7 @@ function Current(props) {
         <p className="">
           <span style={{ fontSize: "20px", fontWeight: "bold" }}>{props.currentData.name}</span>
           <span style={{ fontSize: "10px", marginLeft: "20px" }}>
-            (Time: {getUpdateTime(props.currentData.dt)})
+            {getCustomTime(props.currentData.dt)}
           </span>
         </p>
         <p className="">
