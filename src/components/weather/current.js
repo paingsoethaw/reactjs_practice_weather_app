@@ -1,17 +1,20 @@
 import React from "react";
 
 const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
+const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const getCustomTime = (date) => {
   const wDate = new Date(date * 1000);
-  return ` ${wDate.getDate()} ${monthList[wDate.getMonth()+1]} ${wDate.getFullYear()} ( ${dayList[wDate.getDay()]})  ${wDate.getHours()}:${wDate.getMinutes()}`;
+  let hFormat = `${wDate.getHours()}:${wDate.getMinutes()} AM`;
+  if (wDate.getHours() > 12) {
+    hFormat = `${wDate.getHours() - 12}:${wDate.getMinutes()} PM`;
+  }
+  return `${wDate.getDate()} ${monthList[wDate.getMonth()]} ${wDate.getFullYear()} ( ${dayList[wDate.getDay()]})  ${hFormat}`;
 };
 
 function Current(props) {
-
   return (
-    <div style={{ margin: "0px 0px 20px 0px" }} className="HourlyCard">
+    <div style={{ backgroundColor: "#589496", margin: "0px 0px 20px 0px", padding: "10px" }} className="HourlyCard">
       <center>
         <p className="">
           <span style={{ fontSize: "20px", fontWeight: "bold" }}>{props.currentData.name}</span>
@@ -20,7 +23,7 @@ function Current(props) {
           </span>
         </p>
         <p className="">
-          <strong>{props.currentData.main.temp}&deg;C</strong> (between {props.currentData.main.temp_min}&deg; and {props.currentData.main.temp_max}&deg;)
+          <strong>{props.currentData.main.temp}&deg;C</strong> (between {props.currentData.main.temp_min}&deg;C and {props.currentData.main.temp_max}&deg;C)
         </p>
         <table>
           <tbody>
@@ -29,7 +32,7 @@ function Current(props) {
                 <img className="" alt="" src={"http://openweathermap.org/img/w/" + props.currentData.weather[0].icon + ".png"} />
               </td>
               <td>
-                <strong>{props.currentData.weather[0].description}</strong> ({props.currentData.clouds.all}&#37;)
+                <strong>{props.currentData.weather[0].description}</strong> ({props.currentData.clouds.all}&#37; Cloud)
               </td>
             </tr>
           </tbody>

@@ -30,10 +30,9 @@ function Daily(props) {
   }, {});
 
   return (
-    <div>
+    <div className="HourlyContainer" style={{ margin: "0px auto", border: "0px solid black" }}>
       {
         mapObject(dailyResponseDataGroups, function (key, value) {
-          // return <div>Key: {key}, Value: {value}</div>;
           return <HourlyList key={key} date={key} listData={value} />
         })
       }
