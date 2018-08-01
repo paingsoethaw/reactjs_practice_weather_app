@@ -31,7 +31,7 @@ function HourlyCard(props) {
           </tbody>
         </table>
       </center>
-      {props.hourlyData.temp}&deg;C | {props.hourlyData.clouds_percentage}&#37; Cloud
+      {props.hourlyData.temp}&deg;C ( {props.hourlyData.clouds_percentage}&#37; Cloud )
     </div>
   );
 }
