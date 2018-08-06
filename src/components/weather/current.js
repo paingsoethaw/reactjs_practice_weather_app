@@ -23,7 +23,7 @@ function Current(props) {
           </span>
         </p>
         <p className="">
-          <strong>{parseInt(props.currentData.main.temp)}&deg;C</strong> (between {parseInt(props.currentData.main.temp_min)}&deg;C and {parseInt(props.currentData.main.temp_max)}&deg;C)
+          <strong>{parseInt(props.currentData.main.temp,10)}&deg;C</strong> (between {parseInt(props.currentData.main.temp_min,10)}&deg;C and {parseInt(props.currentData.main.temp_max,10)}&deg;C)
         </p>
         <table>
           <tbody>
