@@ -5,9 +5,9 @@ const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'
 
 const getCustomTime = (date) => {
   const wDate = new Date(date * 1000);
-  let hFormat = `${wDate.getHours()}:${wDate.getMinutes()} AM`;
+  let hFormat = `${wDate.getHours()}:00 AM`;
   if (wDate.getHours() > 12) {
-    hFormat = `${wDate.getHours() - 12}:${wDate.getMinutes()} PM`;
+    hFormat = `${wDate.getHours() - 12}:00 PM`;
   }
   return `${wDate.getDate()} ${monthList[wDate.getMonth()]} ${wDate.getFullYear()} ( ${dayList[wDate.getDay()]})  ${hFormat}`;
 };
@@ -23,7 +23,7 @@ function Current(props) {
           </span>
         </p>
         <p className="">
-          <strong>{props.currentData.main.temp}&deg;C</strong> (between {props.currentData.main.temp_min}&deg;C and {props.currentData.main.temp_max}&deg;C)
+          <strong>{parseInt(props.currentData.main.temp)}&deg;C</strong> (between {parseInt(props.currentData.main.temp_min)}&deg;C and {parseInt(props.currentData.main.temp_max)}&deg;C)
         </p>
         <table>
           <tbody>
