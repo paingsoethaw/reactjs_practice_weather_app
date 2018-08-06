@@ -1,9 +1,14 @@
 
 >> Environment variables in React JS APP (create react app)
+- create .env file
 - use REACT_APP_ as prefix and name what ever you want
+- add env var to .env file
 e.g
 REACT_APP_API_KEY=111111
 REACT_APP_USER_TOKEN=222222
+
+- run command
+$ REACT_APP_WEATHER_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXX npm start
 
 
 >> Open Weather Map
