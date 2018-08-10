@@ -11,8 +11,21 @@ const CURRENT_URL = "http://api.openweathermap.org/data/2.5/weather?id=1880251&a
 
 const HOURLY_URL = "http://api.openweathermap.org/data/2.5/forecast?id=1880251&appid=" + WEATHER_API_KEY + "&units=metric";
 
+const dayList = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+
 var currentData = require('./seeds/currentWeatherData.json');
 var hourlyData = require('./seeds/hourlyWeatherData.json');
+
+const getCurrentUpdatedTime = (date) => {
+  const wDate = new Date(date * 1000);
+  let hFormat = `${wDate.getHours()}:00 AM`;
+  if (wDate.getHours() > 12) {
+    hFormat = `${wDate.getHours() - 12}:00 PM`;
+  }
+  return `${wDate.getDate()} ${monthList[wDate.getMonth()]} ${wDate.getFullYear()} ( ${dayList[wDate.getDay()]})  ${hFormat}`;
+};
 
 class App extends Component {
   state = {
@@ -26,17 +39,28 @@ class App extends Component {
       .then(response => {
         // create an array of contacts only with relevant data
         const responseCurrentData = response.data;
+        const currentDataFormat = {
+          city_name: responseCurrentData.name,
+          updated_time: getCurrentUpdatedTime(responseCurrentData.dt),
+          temp: parseInt(responseCurrentData.main.temp, 10),
+          min_temp: parseInt(responseCurrentData.main.temp_min, 10),
+          max_temp: parseInt(responseCurrentData.main.temp_max, 10),
+          weather_icon: "http://openweathermap.org/img/w/" + responseCurrentData.weather[0].icon + ".png",
+          description: responseCurrentData.weather[0].description,
+          cloud_percentage: responseCurrentData.clouds.all
+        };
+
         // create a new "State" object without mutating 
         // the original State object. 
         const newState = Object.assign({}, this.state, {
-          current_data: responseCurrentData
+          current_data: currentDataFormat
         });
         // store the new state object in the component's state
         this.setState(newState);
       })
       .catch(error => console.log(error));
-    
-      axios
+
+    axios
       .get(HOURLY_URL)
       .then(response => {
         // create an array of contacts only with relevant data

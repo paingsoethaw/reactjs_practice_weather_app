@@ -1,38 +1,30 @@
 import React from "react";
 
-const dayList = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-const getCustomTime = (date) => {
-  const wDate = new Date(date * 1000);
-  let hFormat = `${wDate.getHours()}:00 AM`;
-  if (wDate.getHours() > 12) {
-    hFormat = `${wDate.getHours() - 12}:00 PM`;
-  }
-  return `${wDate.getDate()} ${monthList[wDate.getMonth()]} ${wDate.getFullYear()} ( ${dayList[wDate.getDay()]})  ${hFormat}`;
-};
-
 function Current(props) {
+
+  // const { currentData } = props;
+  const currentData = props.currentData;
+
   return (
     <div style={{ backgroundColor: "#589496", margin: "0px 0px 20px 0px", padding: "10px" }} className="HourlyCard">
       <center>
         <p className="">
-          <span style={{ fontSize: "20px", fontWeight: "bold" }}>{props.currentData.name}</span>
+          <span style={{ fontSize: "20px", fontWeight: "bold" }}>{currentData.city_name}</span>
           <span style={{ fontSize: "10px", marginLeft: "20px" }}>
-            {getCustomTime(props.currentData.dt)}
+            {currentData.updated_time}
           </span>
         </p>
         <p className="">
-          <strong>{parseInt(props.currentData.main.temp,10)}&deg;C</strong> (between {parseInt(props.currentData.main.temp_min,10)}&deg;C and {parseInt(props.currentData.main.temp_max,10)}&deg;C)
+          <strong>{currentData.temp}&deg;C</strong> (between {currentData.min_temp}&deg;C and {currentData.max_temp}&deg;C)
         </p>
         <table>
           <tbody>
             <tr>
               <td>
-                <img className="" alt="" src={"http://openweathermap.org/img/w/" + props.currentData.weather[0].icon + ".png"} />
+                <img className="" alt="" src={currentData.weather_icon} />
               </td>
               <td>
-                <strong>{props.currentData.weather[0].description}</strong> ({props.currentData.clouds.all}&#37; Cloud)
+                <strong>{currentData.description}</strong> ({currentData.cloud_percentage}&#37; Cloud)
               </td>
             </tr>
           </tbody>
