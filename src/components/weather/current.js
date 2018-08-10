@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 function Current(props) {
 
@@ -21,7 +22,7 @@ function Current(props) {
           <tbody>
             <tr>
               <td>
-                <img className="" alt="" src={currentData.weather_icon} />
+                <img className="" alt="" src={currentData.weather_icon_url} />
               </td>
               <td>
                 <strong>{currentData.description}</strong> ({currentData.cloud_percentage}&#37; Cloud)
@@ -32,6 +33,31 @@ function Current(props) {
       </center>
     </div>
   );
+}
+
+
+// validating prop types
+Current.propTypes = {
+  city_name: PropTypes.string,
+  updated_time: PropTypes.string,
+  temp: PropTypes.number,
+  min_temp: PropTypes.number,
+  max_temp: PropTypes.number,
+  weather_icon_url: PropTypes.string,
+  description: PropTypes.string,
+  cloud_percentage: PropTypes.number,
+}
+
+// creating default props
+Current.defaultProps = {
+  city_name: "",
+  updated_time: "",
+  temp: 0,
+  min_temp: 0,
+  max_temp: 0,
+  weather_icon_url: "",
+  description: "",
+  cloud_percentage: 0,
 }
 
 export default Current;

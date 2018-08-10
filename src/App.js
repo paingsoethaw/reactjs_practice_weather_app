@@ -41,7 +41,7 @@ class App extends Component {
           temp: parseInt(responseCurrentData.main.temp, 10),
           min_temp: parseInt(responseCurrentData.main.temp_min, 10),
           max_temp: parseInt(responseCurrentData.main.temp_max, 10),
-          weather_icon: "http://openweathermap.org/img/w/" + responseCurrentData.weather[0].icon + ".png",
+          weather_icon_url: "http://openweathermap.org/img/w/" + responseCurrentData.weather[0].icon + ".png",
           description: responseCurrentData.weather[0].description,
           cloud_percentage: parseInt(responseCurrentData.clouds.all, 10)
         };
