@@ -10,28 +10,30 @@ const getCustomHour = (date) => {
 };
 
 function HourlyCard(props) {
+
+  const hourlyData = props.hourlyData;
   return (
     <div style={{ padding: "10px", margin: "10px 10px 30px 10px", backgroundColor: "#b0f2f0" }} className="HourlyCard">
       <span style={{ fontWeight: "bold" }}>
-        {getCustomHour(props.hourlyData.date_time)}
+        {getCustomHour(hourlyData.date_time)}
       </span>
       <center>
         <table>
           <tbody>
             <tr>
               <td>
-                <img src={props.hourlyData.cloud_icon} alt="cloud icon" />
+                <img src={hourlyData.weather_icon} alt="cloud icon" />
               </td>
               <td>
                 <span className="capitalize">
-                  {props.hourlyData.description}
+                  {hourlyData.description}
                 </span>
               </td>
             </tr>
           </tbody>
         </table>
       </center>
-      {parseInt(props.hourlyData.temp, 10)}&deg;C ( {props.hourlyData.clouds_percentage}&#37; Cloud )
+      {hourlyData.temp}&deg;C ( {hourlyData.cloud_percentage}&#37; Cloud )
     </div>
   );
 }

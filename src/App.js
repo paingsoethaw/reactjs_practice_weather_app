@@ -14,10 +14,6 @@ const HOURLY_URL = "http://api.openweathermap.org/data/2.5/forecast?id=1880251&a
 const dayList = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-
-var currentData = require('./seeds/currentWeatherData.json');
-var hourlyData = require('./seeds/hourlyWeatherData.json');
-
 const getCurrentUpdatedTime = (date) => {
   const wDate = new Date(date * 1000);
   let hFormat = `${wDate.getHours()}:00 AM`;
@@ -29,8 +25,8 @@ const getCurrentUpdatedTime = (date) => {
 
 class App extends Component {
   state = {
-    current_data: currentData,
-    hourly_data: hourlyData
+    current_data: {},
+    hourly_data: []
   };
 
   componentDidMount() {
@@ -47,7 +43,7 @@ class App extends Component {
           max_temp: parseInt(responseCurrentData.main.temp_max, 10),
           weather_icon: "http://openweathermap.org/img/w/" + responseCurrentData.weather[0].icon + ".png",
           description: responseCurrentData.weather[0].description,
-          cloud_percentage: responseCurrentData.clouds.all
+          cloud_percentage: parseInt(responseCurrentData.clouds.all, 10)
         };
 
         // create a new "State" object without mutating 
@@ -68,7 +64,7 @@ class App extends Component {
         // create a new "State" object without mutating 
         // the original State object. 
         const newState = Object.assign({}, this.state, {
-          hourly_data: responseHourlyData
+          hourly_data: responseHourlyData.list
         });
         // store the new state object in the component's state
         this.setState(newState);
@@ -81,7 +77,7 @@ class App extends Component {
       <div className="App">
         <h1>Weather React App</h1>
         <Current currentData={this.state.current_data} />
-        <HourlyContainer dailyData={this.state.hourly_data.list} />
+        <HourlyContainer dailyData={this.state.hourly_data} />
       </div>
     );
   }

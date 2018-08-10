@@ -3,6 +3,15 @@ import HourlyList from "./hourlyList";
 
 const IMG_URL = 'http://openweathermap.org/img/w';
 
+
+const dayList = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+const getHourlyDate = (date) => {
+  const wDate = new Date(date);
+  return `${wDate.getDate()} ${monthList[wDate.getMonth()]} (${dayList[wDate.getDay()]})`;
+};
+
 function mapObject(object, callback) {
   return Object.keys(object).map(function (key) {
     return callback(key, object[key]);
@@ -16,10 +25,10 @@ function Daily(props) {
       date: drData.dt_txt.substring(0, 10),
       time: drData.dt_txt,
       date_time: drData.dt,
-      temp: drData.main.temp,
-      cloud_icon: `${IMG_URL}/${drData.weather[0].icon}.png`,
+      temp: parseInt(drData.main.temp, 10),
+      weather_icon: `${IMG_URL}/${drData.weather[0].icon}.png`,
       description: drData.weather[0].description,
-      clouds_percentage: drData.clouds.all,
+      cloud_percentage: parseInt(drData.clouds.all, 10),
     };
   });
 
@@ -33,7 +42,7 @@ function Daily(props) {
     <div className="HourlyContainer" style={{ margin: "0px auto", border: "0px solid black" }}>
       {
         mapObject(dailyResponseDataGroups, function (key, value) {
-          return <HourlyList key={key} date={key} listData={value} />
+          return <HourlyList key={key} date={getHourlyDate(key)} listData={value} />
         })
       }
     </div>
