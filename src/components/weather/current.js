@@ -2,10 +2,8 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 function Current(props) {
-
   // const { currentData } = props;
   const currentData = props.currentData;
-
   return (
     <div style={{ backgroundColor: "#589496", margin: "0px 0px 20px 0px", padding: "10px" }} className="HourlyCard">
       <center>
@@ -35,17 +33,16 @@ function Current(props) {
   );
 }
 
-
 // validating prop types
 Current.propTypes = {
-  city_name: PropTypes.string,
-  updated_time: PropTypes.string,
-  temp: PropTypes.number,
-  min_temp: PropTypes.number,
-  max_temp: PropTypes.number,
-  weather_icon_url: PropTypes.string,
-  description: PropTypes.string,
-  cloud_percentage: PropTypes.number,
+  city_name: PropTypes.string.isRequired,
+  updated_time: PropTypes.string.isRequired,
+  temp: PropTypes.number.isRequired,
+  min_temp: PropTypes.number.isRequired,
+  max_temp: PropTypes.number.isRequired,
+  weather_icon_url: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  cloud_percentage: PropTypes.number.isRequired
 }
 
 // creating default props

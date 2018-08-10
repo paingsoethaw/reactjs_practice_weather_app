@@ -19,14 +19,13 @@ function mapObject(object, callback) {
 }
 
 function Daily(props) {
-
   const dailyResponseData = props.dailyData.map(drData => {
     return {
       date: drData.dt_txt.substring(0, 10),
       time: drData.dt_txt,
       date_time: drData.dt,
       temp: parseInt(drData.main.temp, 10),
-      weather_icon: `${IMG_URL}/${drData.weather[0].icon}.png`,
+      weather_icon_url: `${IMG_URL}/${drData.weather[0].icon}.png`,
       description: drData.weather[0].description,
       cloud_percentage: parseInt(drData.clouds.all, 10),
     };
